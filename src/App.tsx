@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import ItemList from "./components/ItemList";
+import Receipt from "./components/Receipt";
+import { Cart } from "./module";
 
 function App() {
+  const [money, setMoney] = useState<number>(10000000000);
+  const [cart, setCart] = useState<Cart[]>([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header money={money} />
+      <ItemList
+        money={money}
+        setMoney={setMoney}
+        cart={cart}
+        setCart={setCart}
+      />
+      <Receipt cart={cart} setCart={setCart} />
     </div>
   );
 }
